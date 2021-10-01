@@ -1,35 +1,35 @@
 const { deleteModals } = require("./modal-helper");
 
-const scrapeProdLinks = (page, categories) => {
+const scrapeProdLinks = (page, data) => {
   const fullData = [];
 
-  categories.forEach((obj) => {
-    let gender = obj.gender;
+  for (const item of data) {
+    if (item.category !== "View All" && !item.url.includes("women/aw21")) {
+      await page.goto(item.url, { waitUntil: "load", timeout: 0 });
+      await deleteModals(page);
 
-    Object.entries(obj.data).forEach((entry) => {
-      const [cat, url] = entry;
-      if (cat !== "View All") {
-        // STARTS SCRAPING
-        await page.goto(url);
-        await deleteModals(page);
-
-        // document.querySelectorAll(".plp--product-cards a.card")
-
-        let pagination = await page.$(".pagination button");
-        while (pagination) {
-          await page.click(pagination);
-          await page.waitForTimeout(2000);
-          pagination = await page.$(".pagination button");
-        }
-
-        const allProducts = await page.$$(".plp--product-cards a.card");
-        for (const prod of allProducts) {
-          let prod_url = prod.getProperty("href");
-          fullData.push({ gender: gender, category: cat, prod_url: prod_url });
-        }
+      let pagination = !!(await page.$(".pagination button"));
+      while (pagination) {
+        await page.evaluate(() => {
+          document.querySelector(".pagination button").click();
+        });
+        await page.waitForTimeout(1500);
+        pagination = await page.evaluate(() => {
+          return !!document.querySelector(".pagination button");
+        });
       }
-    });
-  });
+
+      const allUrls = await page.$$eval(".plp--product-cards a.card", (e) =>
+        e.map((e) => e.href)
+      );
+      for (const prod_url of allUrls) {
+        fullData.push({
+          ...item,
+          prod_url: prod_url + "?lang=en",
+        });
+      }
+    }
+  }
   return fullData;
 };
 

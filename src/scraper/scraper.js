@@ -6,8 +6,8 @@ const { scrapeProduct } = require("./scrap-product");
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
-  const categories = await scrapeCat(page);
-  const allProducts = await scrapeProdLinks(page, categories);
+  const data = await scrapeCat(page);
+  const allProductsLinks = await scrapeProdLinks(page, data);
 
   await scrapeProduct(page);
 

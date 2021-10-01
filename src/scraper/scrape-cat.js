@@ -22,28 +22,33 @@ const scrapeCat = async (page) => {
     let section = await (await page.$$(".nav-link-list--item button")).length;
 
     for (let j = 0; j < section; j++) {
-      let secName = await page.evaluate((j) => {
+      const secName = await page.evaluate((j) => {
         const s = document.querySelectorAll(".nav-link-list--item button")[j];
         const secName = s.textContent;
-        c.click();
+        s.click();
         return secName;
       }, j);
 
+      const arrKV = await page.$$eval(".nav-link-list--item a", (e) =>
+        e.map((e) => {
+          let catName = e.textContent.replace("chevron_right", "").trim();
+          let url = e.href + "?lang=en";
+          return { category: catName, url: url };
+        })
+      );
+
       await page.evaluate(() => {
-        let cats = document.querySelectorAll(".nav-link-list--item a");
-        let catKV = {};
-        for (const cat of cats) {
-          let catName = sec.textContent.replace("chevron_right", "").trim();
-          let url = cat.href + "?lang=en";
-          data.push({
-            gender: gName,
-            section: secName,
-            category: catName,
-            url: url,
-          });
-        }
         document.querySelectorAll(".nav-back-link")[1].click();
       });
+
+      for (const secData of arrKV) {
+        data.push({
+          gender: gName,
+          section: secName,
+          category: secData.category,
+          url: secData.url,
+        });
+      }
     }
 
     await page.evaluate(() => {
