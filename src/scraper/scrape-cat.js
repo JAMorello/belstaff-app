@@ -1,16 +1,9 @@
-const scrapeCat = async (page) => {
-  // TODO REMOVE COOKIES AND SHIPPING MODALS
-  const deleteModals = async (page) => {
-    await page.waitForSelector("#onetrust-consent-sdk");
-    await page.evaluate(() => {
-      document.querySelector("#onetrust-consent-sdk")?.remove();
-      document.querySelector(".modal")?.remove();
-    });
-  };
+const { deleteModals } = require("./modal-helper");
 
+const scrapeCat = async (page) => {
   const baseUrl = "https://www.belstaff.com/uk?lang=en";
 
-  await page.goto(baseUrl), { waitUntil: "load", timeout: 0 };
+  await page.goto(baseUrl, { waitUntil: "load", timeout: 0 });
   await deleteModals(page);
 
   const data = [];
@@ -26,34 +19,32 @@ const scrapeCat = async (page) => {
       return gName;
     }, i);
 
-    let categories = await (
-      await page.$$(".nav-link-list--item button")
-    ).length;
-    let catKV = {};
+    let section = await (await page.$$(".nav-link-list--item button")).length;
 
-    for (let j = 0; j < categories; j++) {
-      let catName = await page.evaluate((j) => {
-        const c = document.querySelectorAll(".nav-link-list--item button")[j];
-        const cName = c.textContent;
+    for (let j = 0; j < section; j++) {
+      let secName = await page.evaluate((j) => {
+        const s = document.querySelectorAll(".nav-link-list--item button")[j];
+        const secName = s.textContent;
         c.click();
-        return cName;
+        return secName;
       }, j);
 
-      let catData = await page.evaluate(() => {
-        let sections = document.querySelectorAll(".nav-link-list--item a");
-        let secKV = {};
-        for (const sec of sections) {
-          let name = sec.textContent.replace("chevron_right", "").trim();
-          let url = sec.href;
-          secKV[name] = url;
+      await page.evaluate(() => {
+        let cats = document.querySelectorAll(".nav-link-list--item a");
+        let catKV = {};
+        for (const cat of cats) {
+          let catName = sec.textContent.replace("chevron_right", "").trim();
+          let url = cat.href + "?lang=en";
+          data.push({
+            gender: gName,
+            section: secName,
+            category: catName,
+            url: url,
+          });
         }
         document.querySelectorAll(".nav-back-link")[1].click();
-        return secKV;
       });
-      catKV[catName] = catData;
     }
-
-    data.push({ gender: gName, data: catKV });
 
     await page.evaluate(() => {
       document.querySelectorAll(".nav-back-link")[0].click();
