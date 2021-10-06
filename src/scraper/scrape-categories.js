@@ -1,6 +1,6 @@
 const { deleteModals } = require("./modal-helper");
 
-const scrapeCat = async (page) => {
+const scrapeCategories = async (page) => {
   const baseUrl = "https://www.belstaff.com/uk?lang=en";
 
   await page.goto(baseUrl, { waitUntil: "load", timeout: 0 });
@@ -59,4 +59,4 @@ const scrapeCat = async (page) => {
   return data;
 };
 
-module.exports = { scrapeCat };
+module.exports = { scrapeCategories };

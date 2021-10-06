@@ -25,7 +25,7 @@ const scrapeProdLinks = (page, data) => {
       for (const prod_url of allUrls) {
         fullData.push({
           ...item,
-          prod_url: prod_url + "?lang=en",
+          prod_url: prod_url + "&lang=en",
         });
       }
     }
