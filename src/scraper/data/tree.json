@@ -1,0 +1,60 @@
+{
+  "Men": {
+    "Collections": ["Icons", "Big & Tall", "Long Way Up", "Autumn Winter 2021"],
+    "Outwear": [
+      "Leather Jackets",
+      "Waxed Jackets",
+      "Quilt & Down Jackets",
+      "Suede & Shearling Jackets",
+      "Lightweight Jackets",
+      "Overshirts",
+      "Gilets",
+      "Coats & Parkas"
+    ],
+    "Clothing": [
+      "Shirts",
+      "T Shirts & Polos",
+      "Hoodies & Sweatshirts",
+      "Knitwear",
+      "Jeans & Trousers"
+    ],
+    "Footwear": ["Boots", "Trainers"],
+    "Accessories": [
+      "Bags",
+      "Wallets",
+      "Belts",
+      "Gloves",
+      "Hats",
+      "Scarves",
+      "Patches & Pins"
+    ],
+    "Motorcycle": [
+      "Waxed Moto Jackets",
+      "Leather Moto Jackets",
+      "Textile Moto Jackets",
+      "Motorcycle Trousers",
+      "Motorcycle Boots",
+      "Moto Accessories"
+    ]
+  },
+  "Women": {
+    "Collections": ["Icons", "Autumn Winter 2021"],
+    "Outwear": [
+      "Leather Jackets",
+      "Waxed Jackets",
+      "Quilt & Down Jackets",
+      "Suede & Shearling Jackets",
+      "Coats & Parkas",
+      "Gilets"
+    ],
+    "Clothing": [
+      "Shirts & Tops",
+      "Hoodies & Sweatshirts",
+      "Knitwear & Jumpers",
+      "Jeans & Trousers"
+    ],
+    "Footwear": ["Boots", "Trainers"],
+    "Accessories": ["Belts", "Gloves", "Hats", "Scarves", "Patches & Pins"],
+    "Motorcycle": ["Motorcycle Jackets", "Moto Accessories"]
+  }
+}

@@ -216,7 +216,7 @@ const scrapeProducts = async (page, fullData) => {
             id: id,
             title: title,
             section_url: item.url,
-            gender: item.item,
+            gender: item.gender,
             section: item.section,
             category: item.category,
           };
