@@ -1,5 +1,6 @@
 import {
   HStack,
+  Flex,
   FormControl,
   FormLabel,
   RadioGroup,
@@ -13,13 +14,15 @@ const GenderSelector = ({ gender, setGender }) => {
 
   return (
     <FormControl id="gender">
-      <FormLabel>Gender</FormLabel>
-      <RadioGroup defaultValue={gender} onChange={onChange}>
-        <HStack spacing="24px">
-          <Radio value="Men">Men</Radio>
-          <Radio value="Women">Women</Radio>
-        </HStack>
-      </RadioGroup>
+      <Flex>
+        <FormLabel>Gender</FormLabel>
+        <RadioGroup defaultValue={gender} onChange={onChange}>
+          <HStack>
+            <Radio value="Men">Men</Radio>
+            <Radio value="Women">Women</Radio>
+          </HStack>
+        </RadioGroup>
+      </Flex>
     </FormControl>
   );
 };

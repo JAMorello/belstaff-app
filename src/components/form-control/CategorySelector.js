@@ -10,7 +10,7 @@ const CategorySelector = ({ data, setCategory }) => {
   }, [selectedValue, setCategory]);
 
   return (
-    <FormControl id="category" isRequired={true}>
+    <FormControl id="category" isRequired={true} ml={1}>
       <FormLabel>Category</FormLabel>
       {!data ? (
         <Select
@@ -26,7 +26,11 @@ const CategorySelector = ({ data, setCategory }) => {
           onChange={(e) => setSelectedValue(e.target.value)}
         >
           {data.map((category) => {
-            return <option value={category}>{category}</option>;
+            return (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            );
           })}
         </Select>
       )}

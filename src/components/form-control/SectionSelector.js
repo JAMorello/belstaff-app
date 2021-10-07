@@ -12,7 +12,7 @@ const SectionSelector = ({ data, setSection, setCategory }) => {
   }, [selectedValue, setSection, setCategory]);
 
   return (
-    <FormControl id="section" isRequired={true}>
+    <FormControl id="section" isRequired={true} mr={1}>
       <FormLabel>Section</FormLabel>
       <Select
         placeholder="Select option"
@@ -21,7 +21,11 @@ const SectionSelector = ({ data, setSection, setCategory }) => {
         onChange={(e) => setSelectedValue(e.target.value)}
       >
         {sections.map((section) => {
-          return <option value={section}>{section}</option>;
+          return (
+            <option key={section} value={section}>
+              {section}
+            </option>
+          );
         })}
       </Select>
     </FormControl>
