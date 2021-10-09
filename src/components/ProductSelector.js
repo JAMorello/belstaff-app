@@ -5,7 +5,7 @@ import SectionSelector from "./form-control/SectionSelector";
 import CategorySelector from "./form-control/CategorySelector";
 import tree from "../scraper/data/tree.json";
 
-const ProductSelector = ({ data, setFilteredData }) => {
+const ProductSelector = ({ data, setFilteredData, setNoProducts }) => {
   const [gender, setGender] = useState("Men");
   const [section, setSection] = useState("Collections");
   const [category, setCategory] = useState("Icons");
@@ -19,6 +19,7 @@ const ProductSelector = ({ data, setFilteredData }) => {
         e[0].category === category
     );
     setFilteredData(filteredData);
+    setNoProducts(false);
   };
 
   return (
