@@ -6,7 +6,6 @@ import ProductList from "./components/ProductList";
 import allProducts from "./scraper/data/ALLPRODUCTS.json";
 
 const App = () => {
-  const [data, setData] = useState(allProducts);
   const [filteredData, setFilteredData] = useState(allProducts);
   const [noProducts, setNoProducts] = useState(true);
 
@@ -15,7 +14,7 @@ const App = () => {
       <Flex alignItems="center" direction="column">
         <Header />
         <ProductSelector
-          data={data}
+          data={allProducts}
           setFilteredData={setFilteredData}
           setNoProducts={setNoProducts}
         />

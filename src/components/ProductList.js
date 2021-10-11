@@ -3,15 +3,16 @@ import { VStack, StackDivider, useDisclosure } from "@chakra-ui/react";
 import Product from "./Product";
 import NoProductsBadge from "./NoProductsBadge";
 import ProductModal from "./ProductModal";
+import { nanoid } from "nanoid";
 
 const ProductList = ({ filteredData, noProducts }) => {
   // Initialize varibles for Modal use
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [currentProduct, setCurrentProduct] = useState({});
+  const [currentProducts, setCurrentProducts] = useState([]);
 
   // Fire up when the product modal is going to be opened
-  const handleOpenModal = (product) => {
-    setCurrentProduct(product);
+  const handleOpenModal = (products) => {
+    setCurrentProducts(products);
     onOpen();
   };
 
@@ -33,14 +34,20 @@ const ProductList = ({ filteredData, noProducts }) => {
     >
       {filteredData.map((products) => {
         return (
-          <Product products={products} handleOpenModal={handleOpenModal} />
+          <Product
+            key={nanoid()}
+            products={products}
+            handleOpenModal={handleOpenModal}
+          />
         );
       })}
-      <ProductModal
-        isOpen={isOpen}
-        onClose={onClose}
-        currentProduct={currentProduct}
-      />
+      {currentProducts.length !== 0 && (
+        <ProductModal
+          isOpen={isOpen}
+          onClose={onClose}
+          currentProducts={currentProducts}
+        />
+      )}
     </VStack>
   );
 };

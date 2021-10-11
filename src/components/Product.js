@@ -1,8 +1,6 @@
 import { Flex, HStack, Heading, Spacer, Button, Badge } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 
-import { nanoid } from "nanoid";
-
 const Product = ({ products, handleOpenModal }) => {
   const getColors = (products) => {
     const colorSet = new Set(products.map((e) => e.color));
@@ -26,7 +24,6 @@ const Product = ({ products, handleOpenModal }) => {
 
   return (
     <Flex
-      key={nanoid()}
       direction={{ base: "column", md: "row" }}
       justifyContent="space-between"
       alignItems="center"
@@ -82,9 +79,10 @@ const Product = ({ products, handleOpenModal }) => {
       </Flex>
       <Spacer />
       <Flex w="20%" direction="row-reverse">
-        <Button onClick={() => console.log(products)}>Click!</Button>
+        <Button colorScheme="green" onClick={() => handleOpenModal(products)}>
+          View
+        </Button>
       </Flex>
-      {/* <Button colorScheme="green" onClick={() => handleOpenModal(product)}>View</Button> */}
     </Flex>
   );
 };
