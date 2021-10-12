@@ -57,9 +57,7 @@ const ProductTabs = ({ product }) => {
           <KeyValuePair product={product} />
         </TabPanel>
         <TabPanel>
-          <Box h="25vh">
-            <Images product={product} />
-          </Box>
+          <Images product={product} />
         </TabPanel>
       </TabPanels>
     </Tabs>

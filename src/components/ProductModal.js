@@ -50,12 +50,12 @@ const ProductModal = ({ currentProducts, isOpen, onClose }) => {
                 <Heading as="u" size="md" fontWeight={500} w="40%">
                   {selectedProduct.title}
                 </Heading>
-                <Link href={selectedProduct.category_url} isExternal>
-                  <Heading size="sm" color="gray.600">
-                    {selectedProduct.section} / {selectedProduct.category}{" "}
-                    <ExternalLinkIcon mx="2px" />
-                  </Heading>
-                </Link>
+                <HStack>
+                  <Badge variant="outline" colorScheme="gray">
+                    {selectedProduct.currency}
+                  </Badge>
+                  <Text fontSize="sm">{selectedProduct.price}</Text>
+                </HStack>
               </Flex>
               <HStack mt={1}>
                 <Text>{selectedProduct.subTitle}</Text>
