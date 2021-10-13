@@ -21,13 +21,13 @@ The libraries used are: [Puppeteer](https://github.com/puppeteer/puppeteer) for 
 
 You can see the folder containing the code of the scrapper, made with Pupeteer, [here](https://github.com/JAMorello/belstaff-app/tree/master/src/scraper). There in `scraper.js` you'll find the primary script from were three succesive functions will be called.
 
-The first function comes from `scrape-categories.js`: here the script scrapes from the Belstaff website menu all the links of the posible categories of products that are divided by gender, section and category. A section is a collection of special products (ie. "Collection") or a term that broadly encompases a set of categories (ie. "Outerwear"). A category is a kind of clothing or product (ie. "Suede & Shearling Jackets" ) or the name of a collection (ie. "Autumn Winter 2021"). You can see al the sections and categories [here](https://github.com/JAMorello/belstaff-app/blob/master/src/scraper/data/tree.json)
+The first function comes from `scrape-categories.js`: here the script scrapes from the Belstaff website menu all the links of the posible categories of products that are divided by gender, section and category. A section is a collection of special products (ie. "Collection") or a term that broadly encompases a set of categories (ie. "Outerwear"). A category is a kind of clothing or product (ie. "Suede & Shearling Jackets" ) or the name of a collection (ie. "Autumn Winter 2021"). You can see al the sections and categories [here](https://github.com/JAMorello/belstaff-app/blob/master/src/scraper/data/tree.json).
 
 The second function comes from `scrape-prod-links.js`: here the script access to each link extracted in the previous step and scrapes the url of each product that the section contains.
 
 The third function comes from `scrape-product.js`: here the script iterates through all the scraped links of the product, creates an empty array and populates with the variations of all products, that is, populates it with an array that contains the data of all posible variations (by color or size) of each product present in the Belstaff website.
 
-Finally, the scraper writes a JSON file with all the resulting data extracted. That file will later be used in the React application. You can download and see the json file [here](https://github.com/JAMorello/belstaff-app/blob/master/src/scraper/data/ALLPRODUCTS.json)
+Finally, the scraper writes a JSON file with all the resulting data extracted. That file will later be used in the React application. You can download and see the json file [here](https://github.com/JAMorello/belstaff-app/blob/master/src/scraper/data/ALLPRODUCTS.json).
 
 ## What kind of data was extracted?
 
@@ -35,32 +35,30 @@ For each product, the data of all posible variants (by color and size) are extra
 
 The data extracted is the following:
 
-| Attribute                | Data Type  | Description                                                                                                                                                        |
-| ------------------------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 'id'                     | `string`   | Unique alphanumerical ID representing the variant. Changes with the size and color. May be equal to the SKU.                                                       |
-| 'title'                  | `string`   | The title or name of the product. Often the headline of the product                                                                                                |
-| page.                    |
-| 'subTitle'               | `string`   | The subtitle of the product. May change with the variants.                                                                                                         |
-| 'gender'                 | `string`   | The gender section in which the product is located                                                                                                                 |
-| 'section'                | `string`   | The name of section in which the product is located                                                                                                                |
-| 'category'               | `string`   | The name of category in which the product is located (inside a section)                                                                                            |
-| 'category_url'           | `string`   | The url of the category. There all the products pertaining could be find                                                                                           |
-| 'url'                    | `string`   | URL from the variant, it takes you directly to it.                                                                                                                 |
-| 'description'            | `string`   | The description of the variant                                                                                                                                     |
-| 'images'                 | `string[]` | Array with links to the source product images. All of the image links available for the product variant.                                                           |
-| 'currency'               | `string`   | The currency used (pounds, dollars, etc.).                                                                                                                         |
-| 'sku'                    | `string`   | Another alphanumerical identifier for the variant. Many times the site specifies what this identifier is separately from the main id, but may coincide with the ID |
-| 'brand'                  | `string`   | The brand name or designer of the product.                                                                                                                         |
-| 'subBrand'               | `string`   | Represents a different child / sub-brand                                                                                                                           |
-| beneath the family brand |
-| 'size'                   | `string`   | The size of the variant. May be numeral (ie. "46") or alphanumerical (ie. "M" or "2XL")                                                                            |
-| 'price'                  | `string`   | The price that the customer actually has to pay.                                                                                                                   |
-| 'availability'           | `boolean`  | `True` if there is stock of that specific variant. `False` if not.                                                                                                 |
-| 'itemGroupId'            | `string`   | The ID of the products as a whole (without their variants, but the product group itself).                                                                          |
-| 'color'                  | `string`   | The color of the variant. The manufacturer’s specified color name. This would be like “Firetruck Red” or “Angel’s pink”.                                           |
-| 'breadcrumbs'            | `string[]` | Array from with the website categorical taxonomy path for the item is composed.                                                                                    |
-| 'bullets'                | `string[]` | Array containing all bullet points that contain info about a product that is distributed such as an item in a list, to emphasize it.                               |
-| 'keyValuePairs'          | `Object[]` | Key value pairs made visible to the user on the website. Are always a keyword followed with “:” and it's specific data. For example "Composition: 100% Cotton"..   |
+| Attribute       | Data Type  | Description                                                                                                                                                        |
+| --------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 'id'            | `string`   | Unique alphanumerical ID representing the variant. Changes with the size and color. May be equal to the SKU.                                                       |
+| 'title'         | `string`   | The title or name of the product. Often the headline of the product page.                                                                                          |
+| 'subTitle'      | `string`   | The subtitle of the product. May change with the variants.                                                                                                         |
+| 'gender'        | `string`   | The gender section in which the product is located                                                                                                                 |
+| 'section'       | `string`   | The name of section in which the product is located                                                                                                                |
+| 'category'      | `string`   | The name of category in which the product is located (inside a section)                                                                                            |
+| 'category_url'  | `string`   | The url of the category. There all the products pertaining could be find                                                                                           |
+| 'url'           | `string`   | URL from the variant, it takes you directly to it.                                                                                                                 |
+| 'description'   | `string`   | The description of the variant                                                                                                                                     |
+| 'images'        | `string[]` | Array with links to the source product images. All of the image links available for the product variant.                                                           |
+| 'currency'      | `string`   | The currency used (pounds, dollars, etc.).                                                                                                                         |
+| 'sku'           | `string`   | Another alphanumerical identifier for the variant. Many times the site specifies what this identifier is separately from the main id, but may coincide with the ID |
+| 'brand'         | `string`   | The brand name or designer of the product.                                                                                                                         |
+| 'subBrand'      | `string`   | Represents a different child / sub-brand beneath the family brand                                                                                                  |
+| 'size'          | `string`   | The size of the variant. May be numeral (ie. "46") or alphanumerical (ie. "M" or "2XL")                                                                            |
+| 'price'         | `string`   | The price that the customer actually has to pay.                                                                                                                   |
+| 'availability'  | `boolean`  | `True` if there is stock of that specific variant. `False` if not.                                                                                                 |
+| 'itemGroupId'   | `string`   | The ID of the products as a whole (without their variants, but the product group itself).                                                                          |
+| 'color'         | `string`   | The color of the variant. The manufacturer’s specified color name. This would be like “Firetruck Red” or “Angel’s pink”.                                           |
+| 'breadcrumbs'   | `string[]` | Array from with the website categorical taxonomy path for the item is composed.                                                                                    |
+| 'bullets'       | `string[]` | Array containing all bullet points that contain info about a product that is distributed such as an item in a list, to emphasize it.                               |
+| 'keyValuePairs' | `Object[]` | Key value pairs made visible to the user on the website. Are always a keyword followed with “:” and it's specific data. For example "Composition: 100% Cotton"..   |
 
 Lastly, you can see an example of a variant:
 
