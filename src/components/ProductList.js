@@ -24,7 +24,7 @@ const ProductList = ({ filteredData, noProducts }) => {
   return (
     <VStack
       shadow="md"
-      w={["100vw", "70vw"]}
+      w={["95vw", "70vw"]}
       divider={<StackDivider />}
       borderWidth="1px"
       borderColor="gray.200"

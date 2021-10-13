@@ -15,6 +15,7 @@ const SectionSelector = ({ data, setSection, setCategory }) => {
     <FormControl id="section" isRequired={true} mr={1}>
       <FormLabel>Section</FormLabel>
       <Select
+        size="sm"
         placeholder="Select option"
         aria-required={true}
         value={selectedValue}

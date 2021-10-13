@@ -14,12 +14,14 @@ const CategorySelector = ({ data, setCategory }) => {
       <FormLabel>Category</FormLabel>
       {!data ? (
         <Select
+          size="sm"
           isDisabled={true}
           placeholder="Select option"
           aria-required={true}
         />
       ) : (
         <Select
+          size="sm"
           placeholder="Select option"
           aria-required={true}
           value={selectedValue}

@@ -10,31 +10,45 @@ const Images = ({ product }) => {
 
   return (
     <Box h="60vh" border="1px" borderColor="gray.300">
-      <Flex h="full">
-        <Box w="20%" p={2}>
-          <Flex h="full" direction="column">
-            {product.images.map((e) => {
-              return (
-                <Image
-                  src={e}
-                  alt={product.title}
-                  objectFit="cover"
-                  boxSize="50px"
-                  border={e === selected ? "2px" : "1px"}
-                  borderColor={e === selected ? "black" : "gray"}
-                  borderRadius="lg"
-                  onClick={() => setSelected(e)}
-                  mb={1}
-                />
-              );
-            })}
-          </Flex>
-        </Box>
-        <Flex justifyContent="space-around" alignItems="center" w="80%" p={3}>
+      <Flex
+        h="full"
+        direction={{ base: "column-reverse", md: "row" }}
+        alignItems="center"
+      >
+        <Flex
+          direction={{ base: "row", md: "column" }}
+          justifyContent="space-around"
+          w={["100%", "20%"]}
+          h={["20%", "100%"]}
+          p={2}
+        >
+          {product.images.map((e) => {
+            return (
+              <Image
+                src={e}
+                alt={product.title}
+                objectFit="cover"
+                boxSize={["35px", "50px"]}
+                border={e === selected ? "2px" : "1px"}
+                borderColor={e === selected ? "black" : "gray"}
+                borderRadius="lg"
+                onClick={() => setSelected(e)}
+                mb={[0, 1]}
+                ml={[1, 0]}
+              />
+            );
+          })}
+        </Flex>
+        <Flex
+          justifyContent="space-around"
+          w={["100%", "80%"]}
+          h={["80%", "100%"]}
+          p={3}
+        >
           <Image
             src={selected}
             alt={product.title}
-            h="95%"
+            w={["100%", "75%"]}
             objectFit="cover"
             borderColor="gray"
           />

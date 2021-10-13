@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-const ProductButton = ({ text, control, selected }) => {
+const ProductButton = ({ text, color, control, selected }) => {
   const handleClick = (e) => {
     e.preventDefault();
     control(text);
@@ -8,6 +8,7 @@ const ProductButton = ({ text, control, selected }) => {
 
   return (
     <Button
+      colorScheme={color}
       size="xs"
       variant={selected ? "solid" : "outline"}
       onClick={handleClick}

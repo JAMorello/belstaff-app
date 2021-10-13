@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { Box, HStack, Text, ButtonGroup, Select } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Flex,
+  Text,
+  ButtonGroup,
+  Select,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import ProductButton from "./ProductButton";
 
 const Selectors = ({
@@ -10,6 +18,7 @@ const Selectors = ({
   size,
   setSize,
 }) => {
+  const [isLargerThan380] = useMediaQuery("(min-width: 380px)");
   const [selectedCategory, setSelectedCategory] = useState(
     currentProducts[0].sku
   );
@@ -40,23 +49,41 @@ const Selectors = ({
     setSelectedCategory(newProduct[0].sku);
   }, [color, size]);
 
+  const colorButtons = getColors(currentProducts).map((e) => (
+    <ProductButton
+      text={e}
+      color="green"
+      control={setColor}
+      selected={e === color}
+    />
+  ));
+
+  const sizeButtons = getSizes(currentProducts).map((e) => (
+    <ProductButton
+      text={e}
+      color="teal"
+      control={setSize}
+      selected={e === size}
+    />
+  ));
+
   return (
     <Box>
       <HStack>
         <Text>Colors: </Text>
-        <ButtonGroup colorScheme="green" isAttached>
-          {getColors(currentProducts).map((e) => (
-            <ProductButton text={e} control={setColor} selected={e === color} />
-          ))}
-        </ButtonGroup>
+        {isLargerThan380 ? (
+          <ButtonGroup isAttached>{colorButtons}</ButtonGroup>
+        ) : (
+          <Flex wrap="wrap">{colorButtons}</Flex>
+        )}
       </HStack>
       <HStack mt={2}>
         <Text>Sizes: </Text>
-        <ButtonGroup colorScheme="teal" isAttached>
-          {getSizes(currentProducts).map((e) => (
-            <ProductButton text={e} control={setSize} selected={e === size} />
-          ))}
-        </ButtonGroup>
+        {isLargerThan380 ? (
+          <ButtonGroup isAttached>{sizeButtons}</ButtonGroup>
+        ) : (
+          <Flex wrap="wrap">{sizeButtons}</Flex>
+        )}
       </HStack>
       <HStack mt={2}>
         <Text>Variants: </Text>

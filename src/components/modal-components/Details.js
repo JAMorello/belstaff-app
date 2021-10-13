@@ -23,9 +23,9 @@ const Details = ({ product }) => {
               <Text fontWeight="medium">Category</Text>
             </Td>
             <Td>
-              {" "}
               <Link href={product.category_url} isExternal>
-                {product.category} <ExternalLinkIcon mx="2px" />
+                {product.category}
+                <ExternalLinkIcon mx="2px" />
               </Link>
             </Td>
           </Tr>

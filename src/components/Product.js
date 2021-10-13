@@ -29,7 +29,7 @@ const Product = ({ products, handleOpenModal }) => {
       alignItems="center"
       w="full"
     >
-      <HStack w={{ base: "100%", md: "30%" }}>
+      <HStack w={{ base: "100%", md: "30%" }} mb={["4px", "0px"]}>
         <CheckCircleIcon color="green.500" />
         <Heading size="sm" fontWeight={500}>
           {products[0].title}
@@ -44,8 +44,8 @@ const Product = ({ products, handleOpenModal }) => {
         <Flex
           direction="row"
           flexWrap="wrap"
-          // justifyContent="space-evenly"
-          // alignItems="center"
+          justifyContent="space-evenly"
+          alignItems="center"
         >
           {getColors(products).map((e) => (
             <Badge p={1} m={1}>

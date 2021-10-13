@@ -47,7 +47,7 @@ const ProductModal = ({ currentProducts, isOpen, onClose }) => {
           <Flex direction="column">
             <Box mb={5} mt={3}>
               <Flex justifyContent="space-between">
-                <Heading as="u" size="md" fontWeight={500} w="40%">
+                <Heading as="u" size={["sm", "md"]} fontWeight={500} w="40%">
                   {selectedProduct.title}
                 </Heading>
                 <HStack>
@@ -64,7 +64,12 @@ const ProductModal = ({ currentProducts, isOpen, onClose }) => {
                 </Badge>
               </HStack>
             </Box>
-            <Flex justifyContent="space-between" alignItems="flex-end" mb={6}>
+            <Flex
+              direction={{ base: "column", md: "row" }}
+              justifyContent="space-between"
+              alignItems={{ base: "flex-start", md: "flex-end" }}
+              mb={6}
+            >
               <Selectors
                 currentProducts={currentProducts}
                 setSelectedProduct={setSelectedProduct}
@@ -73,7 +78,7 @@ const ProductModal = ({ currentProducts, isOpen, onClose }) => {
                 size={size}
                 setSize={setSize}
               />
-              <Box>
+              <Box mt={["8px", "0px"]} alignSelf={["center", "flex-end"]}>
                 <Button
                   rightIcon={<ExternalLinkIcon />}
                   size="sm"
