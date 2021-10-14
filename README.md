@@ -2,7 +2,8 @@
 
 ![Belstaff](/readme-assets/belstaff-banner.jpg)
 
-This is the repository of the [Belstaff App](https://twitter.com/HplusBot).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cd392f12-d03e-497c-8f6a-1ca4c51de4c7/deploy-status)](https://app.netlify.com/sites/festive-lamport-c8f2a2/deploys)
+This is the repository of the [Belstaff App](https://festive-lamport-c8f2a2.netlify.app).
 
 The application was created after participating in a paid challenge offered by Scale AI, who were in search of applicants for an important project. That challenge consisted in developing a scraper that retrieves data (and metadata) of products (mainly clothing) from the official website of the brand [Belstaff](https://www.belstaff.com/uk). With some variations in the data extracted and the scope, the same scraper later was used to create this app.
 
