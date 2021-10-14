@@ -40,6 +40,7 @@ const Selectors = ({
     setSelectedProduct(...newProduct);
     setColor(newProduct[0].color);
     setSize(newProduct[0].size);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory]);
 
   useEffect(() => {
@@ -47,6 +48,7 @@ const Selectors = ({
       (e) => e.color === color && e.size === size
     );
     setSelectedCategory(newProduct[0].sku);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [color, size]);
 
   const colorButtons = getColors(currentProducts).map((e) => (

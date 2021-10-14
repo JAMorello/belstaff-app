@@ -29,6 +29,7 @@ const ProductModal = ({ currentProducts, isOpen, onClose }) => {
       (e) => e.color === color && e.size === size
     );
     setSelectedProduct(...newProduct);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [color, size]);
 
   useEffect(() => {
